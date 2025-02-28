@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+    <div id="preloader-active">
+        <div class="preloader d-flex align-items-center justify-content-center">
+            <div class="preloader-inner position-relative">
+                <div class="preloader-circle"></div>
+                <div class="preloader-img pere-text">
+                    <img src="{% static 'assets/img/logo/loder.png' %}" alt="">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <main class="login-body" data-vide-bg="{% static 'assets/img/login-bg.mp4' %}">
+        <form class="form-default" method="POST">
+            {% csrf_token %}
+            
+            <div class="login-form">
+                <div class="logo-login">
+                    <a href="{% url 'home' %}"><img src="{% static 'assets/img/logo/loder.png' %}" alt=""></a>
+                </div>
+                <h2>Login Here</h2>
+                
+                <!-- Afficher les erreurs -->
+                {% if form.errors %}
+                    <div class="alert alert-danger">
+                        <strong>Erreur :</strong> Vérifiez vos identifiants.
+                    </div>
+                {% endif %}
+                
+                <div class="form-input">
+                    <label for="username">Nom d'utilisateur</label>
+                    <input type="text" name="username" placeholder="Nom d'utilisateur" required>
+                </div>
+                <div class="form-input">
+                    <label for="password">Mot de passe</label>
+                    <input type="password" name="password" placeholder="Mot de passe" required>
+                </div>
+                <div class="form-input pt-30">
+                    <input type="submit" value="Se connecter">
+                </div>
+
+                <a href="#" class="forget">Mot de passe oublié ?</a>
+                <a href="{% url 'register' %}" class="registration">Créer un compte</a>
+            </div>
+        </form>
+    </main>
+{% endblock %}
